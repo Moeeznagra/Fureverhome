@@ -13,6 +13,22 @@ html {
   transition: all 0.3s ease;
 }
 
+/* Smooth animations for scroll reveal */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  animation: fadeInUp 0.6s ease-out;
+}
+
 .layout_padding {
   padding-top: 90px;
   padding-bottom: 90px;
@@ -204,6 +220,7 @@ a:focus {
   font-weight: bold;
   color: #ffffff;
   font-size: 24px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .custom_nav-container {
@@ -442,8 +459,26 @@ a:focus {
           align-items: center;
 }
 
+.experience_section {
+  position: relative;
+  overflow: hidden;
+}
+
+.experience_section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #6A9C89 50%, transparent 100%);
+}
+
 .experience_section .detail-box p {
   margin-top: 20px;
+  line-height: 1.8;
+  color: #555;
+  font-size: 15px;
 }
 
 .experience_section .detail-box .btn-box {
@@ -619,10 +654,15 @@ a:focus {
 .about_section .detail-box h2 {
   font-weight: bold;
   text-transform: uppercase;
+  color: #16423C;
+  margin-bottom: 25px;
 }
 
 .about_section .detail-box p {
   margin-top: 15px;
+  line-height: 1.8;
+  color: #555;
+  font-size: 15px;
 }
 
 .about_section .detail-box a {
@@ -704,11 +744,15 @@ a:focus {
 .freelance_section .tab_container .t-link-box .detail-box h5 {
   font-weight: bold;
   color: #8FD14F;
+  font-size: 22px;
+  margin-bottom: 8px;
 }
 
 .freelance_section .tab_container .t-link-box .detail-box h3 {
   font-weight: bold;
   color: #252525;
+  font-size: 18px;
+  line-height: 1.4;
 }
 
 .freelance_section .tab_container .t-link-box[aria-expanded="true"] .img-box, .freelance_section .tab_container .t-link-box:hover .img-box {
