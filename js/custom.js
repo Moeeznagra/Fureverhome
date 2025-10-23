@@ -19,8 +19,24 @@ function getCurrentYear() {
 
 getCurrentYear();
 
+// Throttle function to limit scroll event calls
+function throttle(func, wait) {
+    var timeout;
+    return function executedFunction() {
+        var context = this;
+        var args = arguments;
+        var later = function() {
+            timeout = null;
+            func.apply(context, args);
+        };
+        if (!timeout) {
+            timeout = setTimeout(later, wait);
+        }
+    };
+}
+
 // Smooth scroll reveal animations
-$(window).on('scroll', function() {
+var scrollHandler = throttle(function() {
     $('.category_container .box, .client_section .detail-box, .freelance_section .tab_container .t-link-box').each(function() {
         var elementTop = $(this).offset().top;
         var elementBottom = elementTop + $(this).outerHeight();
@@ -34,11 +50,13 @@ $(window).on('scroll', function() {
             });
         }
     });
-});
+}, 100);
+
+$(window).on('scroll', scrollHandler);
 
 // Initialize elements with starting state
 $(document).ready(function() {
-    $('.category_container .box, .client_section .detail-box').css({
+    $('.category_container .box, .client_section .detail-box, .freelance_section .tab_container .t-link-box').css({
         'opacity': '0',
         'transform': 'translateY(30px)'
     });
